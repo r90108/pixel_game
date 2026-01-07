@@ -16,6 +16,13 @@ jobs:
 
       - name: Install and Build
         run: |
+          echo "Checking environment variables..."
+          if [ -z "$VITE_GOOGLE_APP_SCRIPT_URL" ]; then
+            echo "::warning::VITE_GOOGLE_APP_SCRIPT_URL is mock/empty? (Length: ${#VITE_GOOGLE_APP_SCRIPT_URL})"
+          else
+            echo "VITE_GOOGLE_APP_SCRIPT_URL is present."
+          fi
+          
           npm install
           npm run build
         env:

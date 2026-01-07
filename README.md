@@ -286,6 +286,13 @@ git push origin main
 
 稍等片刻，您就可以透過 `https://<您的帳號>.github.io/<專案名稱>/` 玩遊戲了！
 
+> [!TIP]
+> **找不到 `gh-pages` 分支？**
+> 請點擊 Repository 上方的 **Actions** 分頁，檢查 `Deploy to GitHub Pages` 這個 workflow 是否 **已經執行成功 (呈現綠色勾勾)**。
+> - 如果是 **紅色叉叉**：點進去查看錯誤訊息，通常是因為 Secret 沒設定好。
+> - 如果 **沒有任何紀錄**：代表您可能還沒將 `.github/workflows/deploy.yml` 推送到 GitHub，請執行步驟 2 的指令。
+> - 如果顯示 **Permission denied**：請到 Settings -> Actions -> General -> Workflow permissions，勾選 **Read and write permissions**。
+
 ---
 
 ## 🛠 開發指令
