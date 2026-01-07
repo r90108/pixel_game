@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@font-face {
+  font-family: 'Cubic 11';
+  src: url('https://cdn.jsdelivr.net/gh/ACh-K/Cubic-11@main/fonts/web/Cubic_11_1.010_R.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-pixel: 'Cubic 11', 'Press Start 2P', cursive;
+  --color-bg: #212529;
+  --color-primary: #f1c40f;
+  --color-text: #ecf0f1;
+  --color-accent: #e74c3c;
+  --color-card-bg: #34495e;
+  --crt-scanline-color: rgba(0, 0, 0, 0.1);
+  --crt-glitch-color: rgba(255, 0, 0, 0.2);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-pixel);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: none;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* CRT Scanline Effect */
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to bottom,
+      var(--crt-scanline-color) 50%,
+      rgba(0, 0, 0, 0) 50%);
+  background-size: 100% 4px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: scanline 10s linear infinite;
+}
+
+/* Vignette */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+button {
+  font-family: var(--font-pixel);
+  cursor: pointer;
+  border: 4px solid #fff;
+  background-color: var(--color-accent);
+  color: white;
+  padding: 15px 25px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Pixel Card */
+.pixel-card {
+  border: 4px solid #fff;
+  padding: 30px;
+  background-color: var(--color-card-bg);
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.3);
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Text Glow */
+h1 {
+  text-shadow: 4px 4px 0px #000;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 4px 4px 0px #000;
+  }
+
+  to {
+    text-shadow: 4px 4px 10px var(--color-primary), 4px 4px 0px #000;
+  }
+}
+
+input:not([type="range"]),
+select {
+  font-family: var(--font-pixel);
+  padding: 0 15px;
+  /* Use horizontal padding only, vertical centered by height */
+  font-size: 1.2rem;
+  height: 60px;
+  width: 100%;
+  /* Default to full width control via parent */
+  border: 4px solid #fff;
+  background: var(--color-card-bg);
+  color: white;
+  outline: none;
+  box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  /* Crucial for same size */
+  appearance: none;
+  /* Removes default OS styling */
+  -webkit-appearance: none;
+  border-radius: 0;
+  /* Ensure square corners */
+}
+
+/* Range Input Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #ecf0f1;
+  border: 2px solid #fff;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity .2s;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+}
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+input:focus {
+  background: #2c3e50;
+}
+
+/* Utilities */
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.max-w-2xl {
+  max-width: 672px;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.relative {
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .hidden.md\:block {
+    display: block;
+  }
+}
+
+.hover\:bg-yellow-500:hover {
+  background-color: #f1c40f !important;
+  color: #212529 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border: 2px solid var(--color-bg);
+}
